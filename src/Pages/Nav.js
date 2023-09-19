@@ -1,8 +1,10 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import HomeIcon from "@mui/icons-material/Home";
+import Nav from "react-bootstrap/Nav";
+import NavDropdown from "react-bootstrap/NavDropdown";
 
-export default function Nav() {
+export default function Navbar() {
   const [userSignUp, setUserSignUp] = useState([]);
   const [login, setLogin] = useState([]);
   const [isLogin, setIsLogin] = useState(false);
@@ -22,6 +24,11 @@ export default function Nav() {
     (user) =>
       user.Username === login.Username && user.Password === login.Password
   );
+
+  const match1 = login.Username === "admin" && login.Password === "admin";
+  console.log(match, "Nav2929");
+  console.log(match1, "Nav3030");
+  console.log(login, "Nav3131");
   return (
     <div className="container">
       <nav className="navbar sticky-top navbar-expand-lg navbar-light bg-light">
@@ -54,9 +61,25 @@ export default function Nav() {
                   </Link>
                 </li>
               </div>
-            ) : (
-              null
-            )}
+            ) : null}
+            {isLogin && match1 ? (
+              <div>
+                <Nav>
+                  <NavDropdown
+                    id="nav-dropdown-dark-example"
+                    title="Admin List"
+                    menuVariant="white"
+                  >
+                    <NavDropdown.Item href="#action/3.1">
+                      Action
+                    </NavDropdown.Item>
+                    <NavDropdown.Item href="/ContactList">
+                      Contact List
+                    </NavDropdown.Item>
+                  </NavDropdown>
+                </Nav>
+              </div>
+            ) : null}
             {isLogin ? (
               <li className="nav-item">
                 <Link className="nav-link" to="Logout">
@@ -80,7 +103,17 @@ export default function Nav() {
           </ul>
         </div>
         <div className="profile">
-          {isLogin && match ? <p> Hi, {match.Name}</p> : null}
+          {isLogin && match ? (
+            <p>
+              {" "}
+              Hi , <a href="/Profile">{match.Name} </a>
+            </p>
+          ) : isLogin && match1 ? (
+            <p>
+              {" "}
+              Hi , <a href="/Profile">Admin</a>
+            </p>
+          ) : null}
         </div>
       </nav>
     </div>

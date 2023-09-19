@@ -7,7 +7,7 @@ export default function Footer() {
     <div>
       <footer>
         <Typography variant="body2" color="text.secondary">
-          {"Copyright © "}
+          {"Copyright © "}         
           <span color="inherit" href="">
             TODO
           </span>{" "}

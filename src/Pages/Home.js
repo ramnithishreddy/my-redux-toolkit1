@@ -20,12 +20,18 @@ export default function Home() {
     (user) =>
       user.Username === login.Username && user.Password === login.Password
   );
-  console.log(match, "match23");
+
+  const match1 = login.Username === "admin" && login.Password === "admin";
+  console.log(match, "match25");
+  console.log(match1, "match26");
+  console.log(login, "Home27");
 
   return (
     <div className="home-container">
       {isLogin && match ? (
         <h2>Welcome to the Home Page {match.Name}</h2>
+      ) : isLogin && match1 ? (
+        <h2>Welcome Admin</h2>
       ) : (
         <h2>Welcome SignUp to Start </h2>
       )}

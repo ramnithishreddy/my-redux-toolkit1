@@ -7,9 +7,10 @@ export default function Contact() {
   const [formData, setFormData] = useState({
     name: "",
     email: "",
-    subject: "",
+    subject: ""
   });
   const [formDataArray, setFormDataArray] = useState([]);
+    console.log(formDataArray,'Contact13')
 
   useEffect(() => {
     const store = localStorage.getItem("formDataArray");
@@ -18,8 +19,7 @@ export default function Contact() {
     }
   }, []);
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
+  const handleSubmit = () => {
 
     // localStorage.setItem("formData", JSON.stringify(formData));
     const newFormDataArray = [...formDataArray, formData];

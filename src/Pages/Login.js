@@ -35,6 +35,14 @@ export default function Login() {
       alert("Success");
       nav("/");
       window.location.reload();
+    } else if (login.Username === "admin" && login.Password === "admin") {
+      localStorage.removeItem('login')
+      localStorage.setItem("isLogin", "true");
+      localStorage.setItem("login", JSON.stringify(login));
+      setIsLogin(true);
+      alert("Success");
+      nav("/");
+      window.location.reload();
     } else {
       localStorage.setItem("isLogin", "false");
       setIsLogin(false);
