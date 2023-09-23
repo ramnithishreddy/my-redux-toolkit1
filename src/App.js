@@ -11,12 +11,13 @@ import Login from "./Pages/Login";
 import Logout from "./Pages/Logout";
 import Signup from "./Pages/Signup";
 import ContactList from "./Pages/ContactList";
+import Profile from "./Pages/Profile";
 
 function App() {
   const isLogin = localStorage.getItem("isLogin");
   const login = JSON.parse(localStorage.getItem("login")) || [];
-  const match1 = login.Username === "admin" && login.Password === "admin"
-  console.log(match1,'App1919')
+  const match1 = login.Username === "admin" && login.Password === "admin";
+  console.log(match1, "App1919");
   return (
     <BrowserRouter>
       <div className="App">
@@ -37,6 +38,7 @@ function App() {
               <Route path="ContactList" element={<ContactList />} />
             </>
           ) : null}
+          <Route path="Profile" element={<Profile />} />
         </Routes>
         <Container maxWidth="sm">
           <Footer />
