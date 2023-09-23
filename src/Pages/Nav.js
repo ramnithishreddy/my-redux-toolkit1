@@ -11,7 +11,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const store = JSON.parse(localStorage.getItem("userSignUp")) || [];
-    const store1 = JSON.parse(localStorage.getItem("login")) || [];
+    const store1 = JSON.parse(localStorage.getItem("login")) || {};
 
     setUserSignUp(store);
     setLogin(store1);
@@ -46,10 +46,10 @@ export default function Navbar() {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarNav">
+        <>
           <ul className="navbar-nav">
             {isLogin ? (
-              <div className="collapse navbar-collapse" id="navbarNav">
+              <>
                 <li className="nav-item">
                   <Link className="nav-link" to="TODO">
                     TODO
@@ -60,7 +60,7 @@ export default function Navbar() {
                     Contact
                   </Link>
                 </li>
-              </div>
+              </>
             ) : null}
             {isLogin && match1 ? (
               <div>
@@ -80,14 +80,8 @@ export default function Navbar() {
                 </Nav>
               </div>
             ) : null}
-            {isLogin ? (
-              <li className="nav-item">
-                <Link className="nav-link" to="Logout">
-                  Logout
-                </Link>
-              </li>
-            ) : (
-              <div className="collapse navbar-collapse" id="navbarNav">
+            {!isLogin ? (
+              <>
                 <li className="nav-item">
                   <Link className="nav-link" to="Login">
                     Login
@@ -98,21 +92,31 @@ export default function Navbar() {
                     SignUp
                   </Link>
                 </li>
-              </div>
-            )}
+              </>
+            ) : null}
           </ul>
-        </div>
+        </>
         <div className="profile">
-          {isLogin && match ? (
-            <p>
-              {" "}
-              Hi , <a href="/Profile">{match.Name} </a>
-            </p>
-          ) : isLogin && match1 ? (
-            <p>
-              {" "}
-              Hi , <a href="/Profile">Admin</a>
-            </p>
+          {isLogin && (match || match1) ? (
+            <ul className="navdropdown">
+              <li className="dropdown">
+                <p>
+                  {" "}
+                  Hi,{" "}
+                  <a href="/Profile" className="dropbtn">
+                    {match ? match.Name : "Admin"}
+                  </a>
+                </p>
+                <div className="dropdown-content">
+                  <a href="/Logout" className="list1">
+                    Logout
+                  </a>
+                  <a href="/Settings" className="list2">
+                    Settings
+                  </a>
+                </div>
+              </li>
+            </ul>
           ) : null}
         </div>
       </nav>
